@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import initialCustomImages from '../config/customImages.json';
 
 const STORAGE_KEY = 'cloud_custom_images';
 
@@ -19,22 +20,26 @@ interface ImageContextType {
   modalTarget: ImageTarget | null;
   isModalOpen: boolean;
   toastMessage: string | null;
+  getAllImagesConfig: () => Record<string, string>;
 }
 
 const ImageContext = createContext<ImageContextType | undefined>(undefined);
 
 export const ImageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [images, setImages] = useState<Record<string, string>>({});
+  const [images, setImages] = useState<Record<string, string>>(() => {
+    return { ...(initialCustomImages as Record<string, string>) };
+  });
   const [modalTarget, setModalTarget] = useState<ImageTarget | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  // Carregar imagens customizadas do localStorage na montagem
+  // Carregar imagens customizadas do localStorage na montagem (mesclando com defaults do arquivo)
   useEffect(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
-        setImages(JSON.parse(saved));
+        const parsed = JSON.parse(saved);
+        setImages((prev) => ({ ...prev, ...parsed }));
       }
     } catch (e) {
       console.warn('Erro ao carregar imagens do localStorage:', e);
@@ -100,7 +105,7 @@ export const ImageProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     } catch (e) {
       console.warn(e);
     }
-    setImages({});
+    setImages({ ...(initialCustomImages as Record<string, string>) });
     showToast('Todas as fotos foram restauradas para as originais!');
   }, [showToast]);
 
@@ -112,6 +117,10 @@ export const ImageProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const closeChangeModal = useCallback(() => {
     setIsModalOpen(false);
   }, []);
+
+  const getAllImagesConfig = useCallback((): Record<string, string> => {
+    return images;
+  }, [images]);
 
   return (
     <ImageContext.Provider
@@ -125,6 +134,7 @@ export const ImageProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         modalTarget,
         isModalOpen,
         toastMessage,
+        getAllImagesConfig,
       }}
     >
       {children}

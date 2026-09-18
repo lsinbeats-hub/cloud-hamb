@@ -2,7 +2,7 @@ export interface ImagePreset {
   id: string;
   name: string;
   url: string;
-  category: 'transparent' | 'burger' | 'experience' | 'artesanal';
+  category: 'transparent' | 'burger' | 'experience' | 'artesanal' | 'instagram';
   description: string;
 }
 
@@ -86,5 +86,35 @@ export const BURGER_IMAGE_PRESETS: ImagePreset[] = [
     url: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1000&auto=format&fit=crop',
     category: 'experience',
     description: 'Chapa quente e fogo alto na grelha',
+  },
+
+  // Fotos para o Instagram Feed
+  {
+    id: 'preset-insta-1',
+    name: 'Cheddar Melt Cascata',
+    url: '/images/instagram/insta-1.jpg',
+    category: 'instagram',
+    description: 'Cheddar derretido farto e ponto suculento',
+  },
+  {
+    id: 'preset-insta-2',
+    name: 'Bacon Artesanal Defumado',
+    url: '/images/instagram/insta-2.jpg',
+    category: 'instagram',
+    description: 'Bacon fatiado grosso e queijo cremoso',
+  },
+  {
+    id: 'preset-insta-3',
+    name: 'Smash Duplo na Grelha',
+    url: '/images/instagram/insta-3.jpg',
+    category: 'instagram',
+    description: 'Blend grelhado na brasa para o feed',
+  },
+  {
+    id: 'preset-insta-4',
+    name: 'Burger com Batatas Rústicas',
+    url: '/images/instagram/insta-4.jpg',
+    category: 'instagram',
+    description: 'Combo apetitoso de burger e batatas douradas',
   },
 ];

@@ -77,15 +77,15 @@ export const InstagramSection: React.FC = () => {
                   rel="noopener noreferrer"
                   className="absolute inset-0 bg-[#0d0708]/85 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-between z-10"
                 >
-                  <div className="flex items-center justify-start">
+                  <div className="flex items-center justify-start pointer-events-none">
                     <Instagram className="w-5 h-5 text-[#ef4444]" />
                   </div>
 
-                  <p className="text-xs text-[#d6ccc2] line-clamp-3 font-medium">
+                  <p className="text-xs text-[#d6ccc2] line-clamp-3 font-medium pointer-events-none">
                     {post.caption}
                   </p>
 
-                  <div className="flex items-center gap-4 text-xs font-bold text-white pt-2 border-t border-[#3b171c]">
+                  <div className="flex items-center gap-4 text-xs font-bold text-white pt-2 border-t border-[#3b171c] pointer-events-none">
                     <div className="flex items-center gap-1">
                       <Heart className="w-3.5 h-3.5 fill-[#ef4444] text-[#ef4444]" />
                       <span>{post.likes}</span>

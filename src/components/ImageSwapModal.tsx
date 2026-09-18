@@ -9,6 +9,9 @@ import {
   Check,
   AlertCircle,
   Image as ImageIcon,
+  Copy,
+  CheckCheck,
+  Share2,
 } from 'lucide-react';
 import { useImages } from '../context/ImageContext';
 import { BURGER_IMAGE_PRESETS, ImagePreset } from '../data/imagePresets';
@@ -21,13 +24,15 @@ export const ImageSwapModal: React.FC = () => {
     getImage,
     setImage,
     resetImage,
+    getAllImagesConfig,
   } = useImages();
 
-  const [activeTab, setActiveTab] = useState<'upload' | 'url' | 'presets'>('upload');
+  const [activeTab, setActiveTab] = useState<'upload' | 'url' | 'presets' | 'export'>('upload');
   const [urlInput, setUrlInput] = useState('');
   const [selectedPreview, setSelectedPreview] = useState<string | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [copied, setCopied] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Inicializar preview com a imagem atual
@@ -38,6 +43,7 @@ export const ImageSwapModal: React.FC = () => {
       setUrlInput(current.startsWith('data:') ? '' : current);
       setErrorMsg(null);
       setActiveTab('upload');
+      setCopied(false);
     }
   }, [modalTarget, getImage]);
 
@@ -261,38 +267,50 @@ export const ImageSwapModal: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setActiveTab('upload')}
-                className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-xs font-bold transition-all ${
+                className={`flex-1 flex items-center justify-center gap-1.5 sm:gap-2 py-2 px-2 sm:px-3 rounded-lg text-xs font-bold transition-all ${
                   activeTab === 'upload'
                     ? 'bg-[#b91c1c] text-white shadow-md'
                     : 'text-[#9c8e82] hover:text-white'
                 }`}
               >
                 <Upload className="w-3.5 h-3.5" />
-                <span>Enviar Arquivo</span>
+                <span>Arquivo</span>
               </button>
               <button
                 type="button"
                 onClick={() => setActiveTab('url')}
-                className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-xs font-bold transition-all ${
+                className={`flex-1 flex items-center justify-center gap-1.5 sm:gap-2 py-2 px-2 sm:px-3 rounded-lg text-xs font-bold transition-all ${
                   activeTab === 'url'
                     ? 'bg-[#b91c1c] text-white shadow-md'
                     : 'text-[#9c8e82] hover:text-white'
                 }`}
               >
                 <LinkIcon className="w-3.5 h-3.5" />
-                <span>Colar Link (URL)</span>
+                <span>Link URL</span>
               </button>
               <button
                 type="button"
                 onClick={() => setActiveTab('presets')}
-                className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-xs font-bold transition-all ${
+                className={`flex-1 flex items-center justify-center gap-1.5 sm:gap-2 py-2 px-2 sm:px-3 rounded-lg text-xs font-bold transition-all ${
                   activeTab === 'presets'
                     ? 'bg-[#b91c1c] text-white shadow-md'
                     : 'text-[#9c8e82] hover:text-white'
                 }`}
               >
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>Opções Prontas</span>
+                <span>Prontas</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab('export')}
+                className={`flex-1 flex items-center justify-center gap-1.5 sm:gap-2 py-2 px-2 sm:px-3 rounded-lg text-xs font-bold transition-all ${
+                  activeTab === 'export'
+                    ? 'bg-[#b91c1c] text-white shadow-md'
+                    : 'text-[#9c8e82] hover:text-white'
+                }`}
+              >
+                <Share2 className="w-3.5 h-3.5" />
+                <span>Publicar Vercel</span>
               </button>
             </div>
 
@@ -387,11 +405,67 @@ export const ImageSwapModal: React.FC = () => {
                           {preset.name}
                         </span>
                         <span className="text-[9px] text-[#8c7e73] line-clamp-1">
-                          {preset.category === 'transparent' ? 'Transparente' : 'Gourmet'}
+                          {preset.category === 'transparent'
+                            ? 'Transparente'
+                            : preset.category === 'instagram'
+                            ? 'Instagram'
+                            : 'Gourmet'}
                         </span>
                       </button>
                     );
                   })}
+                </div>
+              </div>
+            )}
+
+            {/* Tab 4: Export to Vercel / Permanent Save */}
+            {activeTab === 'export' && (
+              <div className="space-y-4">
+                <div className="bg-[#18090c] border border-[#48181f] rounded-2xl p-4 space-y-3">
+                  <div className="flex items-start gap-3">
+                    <Share2 className="w-5 h-5 text-[#ef4444] shrink-0 mt-0.5" />
+                    <div>
+                      <h4 className="text-sm font-bold text-white uppercase tracking-wide">
+                        Como publicar suas fotos novas no Vercel
+                      </h4>
+                      <p className="text-xs text-[#b0a195] mt-1 leading-relaxed">
+                        Quando você altera uma foto nesta janela, ela fica salva no navegador. Para que ela apareça na versão publicada no Vercel para todos os clientes, basta copiar o código de configuração abaixo e colar aqui no chat:
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="bg-[#0b0405] border border-[#2b0e12] rounded-xl p-3 font-mono text-[11px] text-[#f4efe8] max-h-36 overflow-y-auto select-all">
+                    {JSON.stringify(getAllImagesConfig(), null, 2)}
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-2 pt-1">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const json = JSON.stringify(getAllImagesConfig(), null, 2);
+                        navigator.clipboard.writeText(json);
+                        setCopied(true);
+                        setTimeout(() => setCopied(false), 3000);
+                      }}
+                      className="inline-flex items-center gap-2 bg-[#b91c1c] hover:bg-[#dc2626] text-white px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-md active:scale-95 cursor-pointer"
+                    >
+                      {copied ? (
+                        <>
+                          <CheckCheck className="w-4 h-4 text-emerald-300" />
+                          <span>Copiado com Sucesso!</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-4 h-4" />
+                          <span>Copiar Configuração das Fotos</span>
+                        </>
+                      )}
+                    </button>
+
+                    <span className="text-[11px] text-[#8e7e72]">
+                      (Depois de copiar, basta enviar no chat dizendo &quot;aplique essas fotos no projeto&quot;)
+                    </span>
+                  </div>
                 </div>
               </div>
             )}

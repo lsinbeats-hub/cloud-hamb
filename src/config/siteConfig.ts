@@ -125,8 +125,7 @@ export const SITE_CONFIG = {
       price: 'R$ 36,90',
       weight: '180g',
       isBestSeller: false,
-      image:
-        'https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=800&auto=format&fit=crop',
+      image: '/images/burgers/cloud-classic.jpg',
       tags: ['Brioche', 'Cheddar', 'Caramelizada'],
     },
     {
@@ -137,8 +136,7 @@ export const SITE_CONFIG = {
       price: 'R$ 39,90',
       weight: '180g',
       isBestSeller: false,
-      image:
-        'https://images.unsplash.com/photo-1553979459-d2229ba7433b?q=80&w=800&auto=format&fit=crop',
+      image: '/images/burgers/cloud-bacon.jpg',
       tags: ['Bacon Crocante', 'Cheddar Cremoso'],
     },
     {
@@ -149,8 +147,7 @@ export const SITE_CONFIG = {
       price: 'R$ 38,90',
       weight: '180g',
       isBestSeller: false,
-      image:
-        'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=800&auto=format&fit=crop',
+      image: '/images/burgers/cloud-bbq.jpg',
       tags: ['Barbecue Defumado', 'Queijo Prato'],
     },
     {
@@ -161,8 +158,7 @@ export const SITE_CONFIG = {
       price: 'R$ 47,90',
       weight: '320g',
       isBestSeller: true, // DESTAQUE com borda vermelha e badge similar à referência visual
-      image:
-        'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?q=80&w=800&auto=format&fit=crop',
+      image: '/images/burgers/cloud-double.jpg',
       tags: ['Dupla Carne', 'Duplo Cheddar', 'Mais Pedido'],
     },
     {
@@ -173,8 +169,7 @@ export const SITE_CONFIG = {
       price: 'R$ 41,90',
       weight: '180g',
       isBestSeller: false,
-      image:
-        'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?q=80&w=800&auto=format&fit=crop',
+      image: '/images/burgers/cloud-crispy.jpg',
       tags: ['Cebola Crispy', 'Crocância Máxima'],
     },
   ] as BurgerItem[],
@@ -187,8 +182,7 @@ export const SITE_CONFIG = {
     text: 'Na CLOUD, cada detalhe importa. Da escolha dos ingredientes à montagem final, tudo é pensado para entregar aquele sabor que faz você querer repetir.',
     badgeYear: '2024',
     badgeText: 'BURGER ARTESANAL',
-    image:
-      'https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1000&auto=format&fit=crop', // Burger artesanal com chapa quente e queijo derretido
+    image: '/images/experience-artisan.jpg', // Burger artesanal com chapa quente e queijo derretido
   },
 
   // Números / Por que Cloud?
@@ -215,82 +209,72 @@ export const SITE_CONFIG = {
     },
   ] as StatItem[],
 
-  // Galeria Gastronômica (100% fotos de hambúrgueres apetitosos)
+  // Galeria Gastronômica (100% fotos distintas de hambúrgueres apetitosos)
   gallery: [
     {
       id: 'g-1',
       title: 'Double Smash com Queijo Derretido',
       category: 'Smash Burger',
-      image:
-        'https://images.unsplash.com/photo-1607013251379-e6eecfffe234?q=80&w=800&auto=format&fit=crop',
+      image: '/images/gallery/gallery-1.jpg',
     },
     {
       id: 'g-2',
-      title: 'Cheddar Melt & Brioche Dourado',
-      category: 'Gourmet',
-      image:
-        'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?q=80&w=800&auto=format&fit=crop',
+      title: 'Burger Artesanal & Batatas Rústicas',
+      category: 'Combo Gourmet',
+      image: '/images/gallery/gallery-2.jpg',
     },
     {
       id: 'g-3',
-      title: 'Cloud Bacon Defumado Crocante',
-      category: 'Bacon Lover',
-      image:
-        'https://images.unsplash.com/photo-1553979459-d2229ba7433b?q=80&w=800&auto=format&fit=crop',
+      title: 'Cheddar Melt & Queijo Escorrendo',
+      category: 'Melt Lover',
+      image: '/images/gallery/gallery-3.jpg',
     },
     {
       id: 'g-4',
       title: 'Pão Selado & Carne Suculenta',
       category: 'Artesanal',
-      image:
-        'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=800&auto=format&fit=crop',
+      image: '/images/gallery/gallery-4.jpg',
     },
     {
       id: 'g-5',
-      title: 'Barbecue Artesanal & Queijo Tostado',
+      title: 'Chapa Quente & Fogo na Grelha',
       category: 'Smoked BBQ',
-      image:
-        'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=800&auto=format&fit=crop',
+      image: '/images/gallery/gallery-5.jpg',
     },
     {
       id: 'g-6',
-      title: 'Cebola Crispy & Ponto Perfeito',
-      category: 'Crispy Burger',
-      image:
-        'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?q=80&w=800&auto=format&fit=crop',
+      title: 'Smash Burger Crocante',
+      category: 'Crispy Smash',
+      image: '/images/gallery/gallery-6.jpg',
     },
   ] as GalleryItem[],
 
-  // Instagram Feed Mock (100% hambúrgueres apetitosos)
+  // Instagram Feed Mock (100% fotos reais e apetitosas de burgers)
   instagramFeed: [
     {
       id: 'insta-1',
-      image:
-        'https://images.unsplash.com/photo-1607013251379-e6eecfffe234?q=80&w=600&auto=format&fit=crop',
+      image: '/images/instagram/insta-1.jpg',
       caption: 'Cascata de cheddar derretido e carne no ponto ideal. Quem resiste? 🔥🍔 #cloudburger',
       likes: '512',
       comments: '41',
     },
     {
       id: 'insta-2',
-      image:
-        'https://images.unsplash.com/photo-1553979459-d2229ba7433b?q=80&w=600&auto=format&fit=crop',
-      caption: 'O inconfundível Cloud Bacon: fatias crocantes e queijo cremoso em abundância. 🥓',
+      image: '/images/instagram/insta-2.jpg',
+      caption: 'O inconfundível sabor da brasa com bacon crocante e queijo cremoso em abundância. 🥓',
       likes: '468',
       comments: '32',
     },
     {
       id: 'insta-3',
-      image:
-        'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=600&auto=format&fit=crop',
+      image: '/images/instagram/insta-3.jpg',
       caption: 'Blend 180g fresco moído no dia, selado em fogo alto para máxima suculência. 🥩',
       likes: '620',
       comments: '58',
     },
     {
       id: 'insta-4',
-      image:
-        'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?q=80&w=600&auto=format&fit=crop',
+      image: '/images/instagram/insta-4.jpg',
       caption: 'Cloud Double: o mais pedido da casa. Dois burgers, dobro de queijo! 🍔🔥',
       likes: '734',
       comments: '64',

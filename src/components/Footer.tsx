@@ -1,10 +1,10 @@
 import React from 'react';
-import { Instagram, MessageCircle, ArrowUp, RotateCcw } from 'lucide-react';
+import { Instagram, MessageCircle, ArrowUp, RotateCcw, Camera } from 'lucide-react';
 import { SITE_CONFIG, getWhatsAppUrl } from '../config/siteConfig';
 import { useImages } from '../context/ImageContext';
 
 export const Footer: React.FC = () => {
-  const { resetAllImages } = useImages();
+  const { resetAllImages, openChangeModal } = useImages();
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -81,7 +81,23 @@ export const Footer: React.FC = () => {
             © {new Date().getFullYear()} {SITE_CONFIG.brandName} Burger House. Todos os direitos reservados.
           </p>
 
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-4">
+            <button
+              id="footer-export-photos-config"
+              onClick={() => {
+                openChangeModal({
+                  id: 'hero-burger',
+                  title: 'Painel de Fotos & Publicação',
+                  defaultSrc: '/images/hero-burger.png',
+                });
+              }}
+              className="inline-flex items-center gap-1.5 text-[11px] text-[#8c7e73] hover:text-white transition-colors py-1 px-2 rounded-md hover:bg-[#16080a]"
+              title="Abrir painel para copiar código das fotos e enviar para o GitHub"
+            >
+              <Camera className="w-3 h-3 text-[#ef4444]" />
+              <span>Copiar Fotos para GitHub</span>
+            </button>
+
             <button
               id="footer-reset-all-photos"
               onClick={resetAllImages}
@@ -89,7 +105,7 @@ export const Footer: React.FC = () => {
               title="Restaurar todas as fotos do site para o padrão original"
             >
               <RotateCcw className="w-3 h-3 text-[#ef4444]" />
-              <span>Restaurar todas as fotos padrão</span>
+              <span>Restaurar padrão</span>
             </button>
           </div>
         </div>

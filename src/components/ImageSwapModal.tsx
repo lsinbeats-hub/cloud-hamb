@@ -418,7 +418,7 @@ export const ImageSwapModal: React.FC = () => {
               </div>
             )}
 
-            {/* Tab 4: Export to Vercel / Permanent Save */}
+            {/* Tab 4: Export to Vercel & GitHub / Permanent Save */}
             {activeTab === 'export' && (
               <div className="space-y-4">
                 <div className="bg-[#18090c] border border-[#48181f] rounded-2xl p-4 space-y-3">
@@ -426,10 +426,10 @@ export const ImageSwapModal: React.FC = () => {
                     <Share2 className="w-5 h-5 text-[#ef4444] shrink-0 mt-0.5" />
                     <div>
                       <h4 className="text-sm font-bold text-white uppercase tracking-wide">
-                        Como publicar suas fotos novas no Vercel
+                        Como sincronizar suas fotos com o GitHub / Vercel
                       </h4>
                       <p className="text-xs text-[#b0a195] mt-1 leading-relaxed">
-                        Quando você altera uma foto nesta janela, ela fica salva no navegador. Para que ela apareça na versão publicada no Vercel para todos os clientes, basta copiar o código de configuração abaixo e colar aqui no chat:
+                        As fotos que você selecionou no computador ficam salvas no navegador (localStorage). Para que o repositório no <strong>GitHub</strong> e o deploy no <strong>Vercel</strong> recebam essas fotos permanentemente, clique no botão abaixo para copiar a configuração e cole aqui no chat:
                       </p>
                     </div>
                   </div>
@@ -463,7 +463,7 @@ export const ImageSwapModal: React.FC = () => {
                     </button>
 
                     <span className="text-[11px] text-[#8e7e72]">
-                      (Depois de copiar, basta enviar no chat dizendo &quot;aplique essas fotos no projeto&quot;)
+                      (Depois de copiar, envie aqui no chat: &quot;aplique essas fotos no repositório&quot;)
                     </span>
                   </div>
                 </div>

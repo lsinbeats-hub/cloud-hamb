@@ -13,6 +13,7 @@ export interface ImageTarget {
 interface ImageContextType {
   getImage: (id: string, defaultSrc: string) => string;
   setImage: (id: string, newSrc: string) => void;
+  setAllImages: (newConfig: Record<string, string>) => void;
   resetImage: (id: string) => void;
   resetAllImages: () => void;
   openChangeModal: (target: ImageTarget) => void;
@@ -80,6 +81,23 @@ export const ImageProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     [showToast]
   );
 
+  // Atualizar todas as imagens de uma só vez
+  const setAllImages = useCallback(
+    (newConfig: Record<string, string>) => {
+      setImages((prev) => {
+        const updated = { ...prev, ...newConfig };
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+        } catch (e) {
+          console.warn('Erro ao salvar no localStorage:', e);
+        }
+        return updated;
+      });
+      showToast('Configuração de fotos atualizada com sucesso!');
+    },
+    [showToast]
+  );
+
   // Restaurar imagem individual para o padrão original
   const resetImage = useCallback(
     (id: string) => {
@@ -127,6 +145,7 @@ export const ImageProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       value={{
         getImage,
         setImage,
+        setAllImages,
         resetImage,
         resetAllImages,
         openChangeModal,

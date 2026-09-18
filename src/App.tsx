@@ -10,24 +10,11 @@ import { InstagramSection } from './components/InstagramSection';
 import { LocationSection } from './components/LocationSection';
 import { Footer } from './components/Footer';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
-import { ImageProvider, useImages } from './context/ImageContext';
-import { ImageSwapModal } from './components/ImageSwapModal';
+import { ImageProvider } from './context/ImageContext';
 
 function AppContent() {
-  const { toastMessage } = useImages();
-
   return (
     <div className="min-h-screen bg-[#0c0809] text-[#f4efe8] font-body selection:bg-[#991b1b] selection:text-white flex flex-col relative">
-      {/* Toast feedback */}
-      {toastMessage && (
-        <div
-          id="global-image-toast"
-          className="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 bg-[#1e0a0e]/95 text-white border border-[#ef4444]/80 px-5 py-3 rounded-2xl shadow-2xl shadow-black/90 flex items-center gap-3 backdrop-blur-md transition-all animate-bounce"
-        >
-          <span className="w-2 h-2 rounded-full bg-[#ef4444]"></span>
-          <span className="text-xs sm:text-sm font-extrabold tracking-wide">{toastMessage}</span>
-        </div>
-      )}
 
       {/* 1. Sticky Navigation Header */}
       <Header />
@@ -64,9 +51,6 @@ function AppContent() {
 
       {/* 11. Floating WhatsApp Conversion Button */}
       <FloatingWhatsApp />
-
-      {/* 12. Modal de Fotos e Exportação para GitHub/Vercel */}
-      <ImageSwapModal />
     </div>
   );
 }

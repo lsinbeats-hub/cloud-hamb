@@ -78,8 +78,7 @@ export const SITE_CONFIG = {
     headlinePart2: 'BURGER FAVORITO.',
     subheadline:
       'Hambúrguer artesanal, ingredientes de verdade e muito sabor em cada mordida. Pão brioche selado, carne suculenta e queijo derretido.',
-    mainImage:
-      'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?q=80&w=1200&auto=format&fit=crop',
+    mainImage: '/images/hero-burger.png',
     highlights: [
       { label: 'ARTESANAL', sub: 'Blend secreto 180g' },
       { label: '100% SABOR', sub: 'Sem conservantes' },
